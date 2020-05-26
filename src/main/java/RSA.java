@@ -26,13 +26,13 @@ public class RSA {
         while (true){
             result = getRandom(BigInteger.TWO,new BigInteger(1024, 15, new Random()));
 
-            if(millerRabin(result, 5)){
+            if(millerRabin(result)){
                 return result;
             }
         }
     }
 
-    public static Boolean millerRabin(BigInteger num, int testCount){
+    public static Boolean millerRabin(BigInteger num){
         if (num.compareTo(BigInteger.ONE) == 0)
             return false;
         if (num.compareTo(new BigInteger("3")) < 0)
@@ -43,7 +43,7 @@ public class RSA {
             s++;
             d = d.divide(BigInteger.TWO);
         }
-        for (int i = 0; i < testCount; i++) {
+        for (int i = 0; i < s; i++) {
             BigInteger a = getRandom(BigInteger.TWO, num.subtract(BigInteger.ONE));
             BigInteger x = a.modPow(d, num);
             if (x.equals(BigInteger.ONE) || x.equals(num.subtract(BigInteger.ONE)))
