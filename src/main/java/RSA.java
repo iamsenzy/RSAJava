@@ -56,7 +56,7 @@ public class RSA {
                 if (x.equals(num.subtract(BigInteger.ONE)))
                     break;
             }
-            if (r == s) // None of the steps made x equal n-1.
+            if (r == s)
                 return false;
         }
         return true;
